@@ -101,12 +101,15 @@
       <div class="scroll-container">
         <div class="infinite-scroll gap-3">
           <!-- Tarjetas (ejemplos) -->
-          <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden flex-shrink-0 w-32">
-            <div class="placeholder-img h-24 text-pink-300 text-lg" aria-hidden="true">📱</div>
-            <div class="p-2">
-              <h3 class="font-semibold text-gray-800 text-xs">Llavero Celular Retro</h3>
-              <p class="text-xs text-gray-600 mt-1 leading-tight">Diseño nostálgico</p>
-            </div>
+
+          <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden flex-shrink-0 w-32"
+           data-images="https://picsum.photos/id/1015/800/600|https://picsum.photos/id/1025/800/600|https://picsum.photos/id/1035/800/600"
+           data-title="Llavero Celular Retro">
+          <div class="placeholder-img h-24 text-pink-300 text-lg" aria-hidden="true">📱</div>
+          <div class="p-2">
+            <h3 class="font-semibold text-gray-800 text-xs">Llavero Celular Retro</h3>
+            <p class="text-xs text-gray-600 mt-1 leading-tight">Diseño nostálgico</p>
+          </div>
           </div>
 
           <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden flex-shrink-0 w-32">
