@@ -432,5 +432,144 @@
       });
     });
   </script>
+  
+  <script>
+(() => {
+  const modal = document.getElementById('galleryModal');
+  const imgEl = document.getElementById('galleryImage');
+  const captionEl = document.getElementById('galleryCaption');
+  const idxEl = document.getElementById('galleryIndex');
+  const totalEl = document.getElementById('galleryTotal');
+  const btnPrev = document.getElementById('galleryPrev');
+  const btnNext = document.getElementById('galleryNext');
+  const btnClose = document.getElementById('galleryClose');
+
+  let images = [];
+  let title = '';
+  let index = 0;
+
+  const placeholders = [
+    'https://picsum.photos/id/1011/800/600',
+    'https://picsum.photos/id/1018/800/600',
+    'https://picsum.photos/id/1020/800/600'
+  ];
+
+  function openModal(imgs, ttl) {
+    images = (imgs && imgs.length) ? imgs : placeholders;
+    title = ttl || 'Galería';
+    index = 0;
+    totalEl.textContent = images.length;
+    render();
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    // Prefetch vecinos
+    prefetchNeighbor(index + 1);
+    prefetchNeighbor(index - 1);
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function render() {
+    const safeIndex = ((index % images.length) + images.length) % images.length;
+    index = safeIndex;
+    imgEl.src = images[index];
+    imgEl.alt = `${title} - imagen ${index + 1}`;
+    captionEl.textContent = title;
+    idxEl.textContent = index + 1;
+  }
+
+  function next() {
+    index = (index + 1) % images.length;
+    render();
+    prefetchNeighbor(index + 1);
+  }
+
+  function prev() {
+    index = (index - 1 + images.length) % images.length;
+    render();
+    prefetchNeighbor(index - 1);
+  }
+
+  function prefetchNeighbor(n) {
+    const i = ((n % images.length) + images.length) % images.length;
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.as = 'image';
+    link.href = images[i];
+    document.head.appendChild(link);
+  }
+
+  // Eventos
+  btnNext.addEventListener('click', next);
+  btnPrev.addEventListener('click', prev);
+  btnClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target.dataset.close === 'true') closeModal();
+  });
+
+  // Teclado
+  window.addEventListener('keydown', (e) => {
+    if (modal.classList.contains('hidden')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // Swipe táctil
+  let startX = 0;
+  imgEl.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, {passive:true});
+  imgEl.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
+  }, {passive:true});
+
+  // Delegación: abrir desde cualquier .product-card
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.product-card');
+    if (!card) return;
+    const str = card.dataset.images || '';
+    const imgs = str.split('|').map(s => s.trim()).filter(Boolean);
+    const ttl = card.dataset.title || card.querySelector('h3')?.textContent?.trim() || 'Galería';
+    openModal(imgs, ttl);
+  });
+})();
+</script>
+  <!-- Modal Galería -->
+<div id="galleryModal"
+     class="fixed inset-0 z-[1000] hidden"
+     role="dialog" aria-modal="true" aria-labelledby="galleryTitle">
+  <!-- Fondo -->
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-close="true"></div>
+
+  <!-- Contenido -->
+  <div class="relative h-full w-full flex items-center justify-center p-4">
+    <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-4 py-3 border-b">
+        <h3 id="galleryTitle" class="text-sm font-semibold text-gray-800">Galería</h3>
+        <button id="galleryClose" class="p-2 rounded-full hover:bg-gray-100" aria-label="Cerrar">
+          ✖
+        </button>
+      </div>
+
+      <!-- Viewport -->
+      <div class="relative bg-black">
+        <img id="galleryImage" src="" alt="" class="mx-auto max-h-[70vh] w-auto select-none">
+        <!-- Botones -->
+        <button id="galleryPrev" class="absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/80 hover:bg-white shadow" aria-label="Anterior">‹</button>
+        <button id="galleryNext" class="absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/80 hover:bg-white shadow" aria-label="Siguiente">›</button>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-between px-4 py-3 border-t text-xs text-gray-600">
+        <div id="galleryCaption" class="truncate">—</div>
+        <div><span id="galleryIndex">1</span>/<span id="galleryTotal">1</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
