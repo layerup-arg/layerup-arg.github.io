@@ -23,44 +23,4 @@
   .whatsapp-float { animation: none; }
   .category-card, .product-card { transition: none; }
 }
-/* Fondo general */
-.gradient-bg {
-  background: linear-gradient(135deg, #f8f9fa 0%, #edf7f1 50%, #ffffff 100%);
-}
 
-/* Header y títulos */
-h1, h2, h3 {
-  color: #2f4f4f; /* gris oscuro */
-}
-
-/* Título principal con degradado verde */
-.header-title {
-  background: linear-gradient(to right, #6fbf8f, #a8d5ba);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Tarjetas de producto */
-.category-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb; /* gris claro */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.category-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 20px rgba(111, 191, 143, 0.2); /* verde pastel */
-}
-
-/* Footer */
-footer {
-  background: #6fbf8f; /* verde suave */
-  color: #ffffff;
-}
-
-/* Botón flotante de WhatsApp */
-.whatsapp-float {
-  background: #6fbf8f !important;
-}
-.whatsapp-float:hover {
-  background: #4fa873 !important;
-}
