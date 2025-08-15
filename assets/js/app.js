@@ -1,13 +1,15 @@
-<!-- ========== BEGIN FILE: /assets/js/app.js ========== -->
 (async () => {
   const nav = document.getElementById('categoriesNav');
   const content = document.getElementById('content');
 
-  // Build categories & sections
+  function scrollToCategory(id){
+    document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  window.scrollToCategory = scrollToCategory;
+
   function renderCategories(data) {
     const grid = document.createElement('div');
     grid.className = 'container mx-auto px-4';
-
     const inner = document.createElement('div');
     inner.className = 'grid grid-cols-2 gap-3';
 
@@ -15,7 +17,9 @@
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'category-card p-3 rounded-xl text-center shadow-lg bg-white';
-      btn.innerHTML = `<div class="text-2xl mb-1">${cat.title.split(' ')[0]}</div><span class="font-semibold text-xs ${cat.accent}">${cat.title.replace(/^\S+\s/, '')}</span>`;
+      const icon = cat.title.split(' ')[0]; // emoji
+      const label = cat.title.replace(/^\S+\s/, '');
+      btn.innerHTML = `<div class="text-2xl mb-1">${icon}</div><span class="font-semibold text-xs ${cat.accent}">${label}</span>`;
       btn.addEventListener('click', () => scrollToCategory(cat.id));
       inner.appendChild(btn);
     });
@@ -23,11 +27,6 @@
     grid.appendChild(inner);
     nav.appendChild(grid);
   }
-
-  function scrollToCategory(id){
-    document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
-  }
-  window.scrollToCategory = scrollToCategory;
 
   function sectionTitle(cat){
     return `<h2 class="text-2xl font-bold text-center mb-6 ${cat.accent}">${cat.title}</h2>`;
@@ -37,11 +36,10 @@
     data.categories.forEach(cat => {
       const sec = document.createElement('section');
       sec.id = cat.id;
-      sec.className = `py-8 ${cat.id === 'clickers' || cat.id === 'sorpresas' ? 'bg-white/50' : ''}`;
+      sec.className = `py-8 ${(['clickers','sorpresas'].includes(cat.id)) ? 'bg-white/50' : ''}`;
 
       const wrap = document.createElement('div');
       wrap.className = 'container mx-auto px-4';
-
       wrap.insertAdjacentHTML('beforeend', sectionTitle(cat));
 
       if (!cat.items.length) {
@@ -78,7 +76,7 @@
     });
   }
 
-  // Gallery logic
+  // Gallery
   const modal = document.getElementById('galleryModal');
   const imgEl = document.getElementById('galleryImage');
   const captionEl = document.getElementById('galleryCaption');
@@ -105,54 +103,87 @@
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
-  function closeModal() { modal.classList.add('hidden'); document.body.style.overflow = ''; }
+  function closeModal(){ modal.classList.add('hidden'); document.body.style.overflow=''; }
 
-  function render() {
-    if (!images.length) return;
-    const safeIndex = ((index % images.length) + images.length) % images.length;
-    index = safeIndex;
+  function render(){
+    if(!images.length) return;
+    index = ((index % images.length) + images.length) % images.length;
     imgEl.src = images[index];
-    imgEl.alt = `${title} - imagen ${index + 1}`;
+    imgEl.alt = `${title} - imagen ${index+1}`;
     captionEl.textContent = title;
     idxEl.textContent = index + 1;
     updateDots();
     updateThumbs();
   }
-  function next(){ if(!images.length) return; index = (index + 1) % images.length; render(); }
-  function prev(){ if(!images.length) return; index = (index - 1 + images.length) % images.length; render(); }
+  function next(){ if(!images.length) return; index = (index+1)%images.length; render(); }
+  function prev(){ if(!images.length) return; index = (index-1+images.length)%images.length; render(); }
 
-  function buildDots(){ dotsEl.innerHTML = ''; (images||[]).forEach((_,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='w-2.5 h-2.5 rounded-full bg-gray-300 aria-[current=true]:bg-indigo-500'; b.setAttribute('aria-label',`Ir a imagen ${i+1}`); b.addEventListener('click',()=>{index=i;render();}); dotsEl.appendChild(b); }); }
+  function buildDots(){ 
+    dotsEl.innerHTML=''; 
+    (images||[]).forEach((_,i)=>{
+      const b=document.createElement('button');
+      b.type='button';
+      b.className='w-2.5 h-2.5 rounded-full bg-gray-300 aria-[current=true]:bg-indigo-500';
+      b.setAttribute('aria-label',`Ir a imagen ${i+1}`);
+      b.addEventListener('click',()=>{index=i;render();});
+      dotsEl.appendChild(b);
+    });
+  }
   function updateDots(){ [...dotsEl.children].forEach((dot,i)=>{ dot.setAttribute('aria-current', i===index?'true':'false'); }); }
 
-  function buildThumbs(){ thumbsEl.innerHTML=''; (images||[]).forEach((src,i)=>{ const btn=document.createElement('button'); btn.type='button'; btn.className='relative flex-shrink-0'; btn.addEventListener('click',()=>{index=i;render();}); const img=document.createElement('img'); img.src=src; img.alt=`Miniatura ${i+1}`; img.loading='lazy'; img.className='h-16 w-24 object-cover rounded-lg shadow ring-1 ring-gray-200'; btn.appendChild(img); thumbsEl.appendChild(btn); }); }
-  function updateThumbs(){ [...thumbsEl.querySelectorAll('img')].forEach((img,i)=>{ if(i===index) img.classList.add('thumb-active'); else img.classList.remove('thumb-active'); }); const activeBtn=thumbsEl.children[index]; activeBtn?.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); }
+  function buildThumbs(){
+    thumbsEl.innerHTML='';
+    (images||[]).forEach((src,i)=>{
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='relative flex-shrink-0';
+      btn.addEventListener('click',()=>{index=i;render();});
+      const img=document.createElement('img');
+      img.src=src; img.alt=`Miniatura ${i+1}`; img.loading='lazy';
+      img.className='h-16 w-24 object-cover rounded-lg shadow ring-1 ring-gray-200';
+      btn.appendChild(img); thumbsEl.appendChild(btn);
+    });
+  }
+  function updateThumbs(){
+    [...thumbsEl.querySelectorAll('img')].forEach((img,i)=>{
+      if(i===index) img.classList.add('thumb-active'); else img.classList.remove('thumb-active');
+    });
+    const activeBtn=thumbsEl.children[index];
+    activeBtn?.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  }
 
   btnNext?.addEventListener('click', next);
   btnPrev?.addEventListener('click', prev);
   btnClose?.addEventListener('click', closeModal);
-  modal?.addEventListener('click', (e) => { if (e.target.dataset.close === 'true') closeModal(); });
-  window.addEventListener('keydown', (e) => { if (modal.classList.contains('hidden')) return; if (e.key==='Escape') closeModal(); if (e.key==='ArrowRight') next(); if (e.key==='ArrowLeft') prev(); });
-  let startX=0; imgEl.addEventListener('touchstart',(e)=>{startX=e.touches[0].clientX;},{passive:true}); imgEl.addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].clientX-startX; if(Math.abs(dx)>40) (dx<0?next():prev());},{passive:true});
+  modal?.addEventListener('click', (e)=>{ if(e.target.dataset.close==='true') closeModal(); });
+  window.addEventListener('keydown', (e)=>{ if(modal.classList.contains('hidden')) return; if(e.key==='Escape') closeModal(); if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); });
 
-  // Delegación para abrir la galería
-  document.addEventListener('click', (e) => {
+  let startX=0;
+  imgEl.addEventListener('touchstart',(e)=>{startX=e.touches[0].clientX;},{passive:true});
+  imgEl.addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].clientX-startX; if(Math.abs(dx)>40) (dx<0?next():prev());},{passive:true});
+
+  document.addEventListener('click', (e)=>{
     const card = e.target.closest('.product-card');
-    if (!card) return;
+    if(!card) return;
     const imgs = (card.dataset.images || '').split('|').filter(Boolean);
     const ttl = card.dataset.title || card.querySelector('h3')?.textContent?.trim() || 'Galería';
     openModal(imgs, ttl);
   });
 
-  // Load data
   try {
     const res = await fetch('assets/data/products.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
     const data = await res.json();
     renderCategories(data);
     renderSections(data);
   } catch (err) {
-    console.error('No se pudo cargar products.json', err);
+    console.error('Error cargando products.json:', err);
     const fallback = { categories: [] };
-    renderCategories(fallback); renderSections(fallback);
+    renderCategories(fallback);
+    renderSections(fallback);
+    const warn = document.createElement('p');
+    warn.className = 'text-center text-sm text-red-600';
+    warn.textContent = 'No se pudo cargar el catálogo. Ver consola/Network para detalles.';
+    content.appendChild(warn);
   }
 })();
-<!-- ========== END FILE: /assets/js/app.js ========== -->
