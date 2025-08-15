@@ -87,13 +87,6 @@
       ]
     },
     {
-      "id": "figuras",
-      "title": "🎭 Figuras",
-      "accent": "text-green-800",
-      "cardSize": "card-lg",
-      "items": []
-    },
-    {
       "id": "sorpresas",
       "title": "🎁 Sorpresas",
       "accent": "text-purple-800",
