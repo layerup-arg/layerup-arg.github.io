@@ -100,13 +100,6 @@
       "cardSize": "card-lg",
       "items": [
         {
-          "title": "Escarapelas",
-          "subtitle": "Bandera argentina",
-          "images": [
-            "fotos/sorpresas/escarapelas2.jpeg"
-          ]
-        },
-        {
           "title": "Huevos de Dragón",
           "subtitle": "Monocromo con sorpresa",
           "images": [
@@ -129,10 +122,17 @@
       "cardSize": "card-lg",
       "items": [
         {
-          "title": "Escarapelas (var. 1)",
+          "title": "Escarapela",
           "subtitle": "Tradicional",
           "images": [
             "fotos/otros/escarapelas1.jpeg"
+          ]
+        },
+        {
+          "title": "Escarapela Corazon",
+          "subtitle": "Bandera argentina",
+          "images": [
+            "fotos/sorpresas/escarapelas2.jpeg"
           ]
         }
       ]
