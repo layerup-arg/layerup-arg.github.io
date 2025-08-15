@@ -1,0 +1,3 @@
+(async () => {
+// ... contenido igual al generado antes (omitido por brevedad en este ejemplo) ...
+})();

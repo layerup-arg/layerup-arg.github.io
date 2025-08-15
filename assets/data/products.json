@@ -1,0 +1,141 @@
+{
+  "categories": [
+    {
+      "id": "llaveros",
+      "title": "🔑 Llaveros",
+      "accent": "text-pink-800",
+      "cardSize": "card",
+      "items": [
+        {
+          "title": "Boca",
+          "subtitle": "Escudo",
+          "images": [
+            "fotos/llaveros/boca1.jpeg"
+          ]
+        },
+        {
+          "title": "River",
+          "subtitle": "Escudo",
+          "images": [
+            "fotos/llaveros/river1.jpeg"
+          ]
+        },
+        {
+          "title": "Hello Kitty Azul",
+          "subtitle": "Multicolor",
+          "images": [
+            "fotos/llaveros/kittyazul1.jpeg"
+          ]
+        },
+        {
+          "title": "Hello Kitty Roja",
+          "subtitle": "Multicolor",
+          "images": [
+            "fotos/llaveros/kittyroja1.jpeg"
+          ]
+        },
+        {
+          "title": "Kuromi",
+          "subtitle": "Multicolor",
+          "images": [
+            "fotos/llaveros/kuromi1.jpeg"
+          ]
+        },
+        {
+          "title": "My Melody",
+          "subtitle": "Multicolor",
+          "images": [
+            "fotos/llaveros/mymelody1.jpeg"
+          ]
+        },
+        {
+          "title": "Pikachu",
+          "subtitle": "Plano multicolor",
+          "images": [
+            "fotos/llaveros/pikachu.jpeg"
+          ]
+        },
+        {
+          "title": "Pokebola 3D",
+          "subtitle": "Tridimensional",
+          "images": [
+            "fotos/llaveros/pokebola1.jpeg"
+          ]
+        },
+        {
+          "title": "Sombrero HP",
+          "subtitle": "Hechicería",
+          "images": [
+            "fotos/llaveros/sombreroHP1.jpeg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clickers",
+      "title": "🎮 Clickers",
+      "accent": "text-blue-800",
+      "cardSize": "card-lg",
+      "items": [
+        {
+          "title": "Clicker Tulipanes",
+          "subtitle": "Diseño floral",
+          "images": [
+            "fotos/clickers/tulipanes1.jpeg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "figuras",
+      "title": "🎭 Figuras",
+      "accent": "text-green-800",
+      "cardSize": "card-lg",
+      "items": []
+    },
+    {
+      "id": "sorpresas",
+      "title": "🎁 Sorpresas",
+      "accent": "text-purple-800",
+      "cardSize": "card-lg",
+      "items": [
+        {
+          "title": "Escarapelas",
+          "subtitle": "Bandera argentina",
+          "images": [
+            "fotos/sorpresas/escarapelas2.jpeg"
+          ]
+        },
+        {
+          "title": "Huevos de Dragón",
+          "subtitle": "Monocromo con sorpresa",
+          "images": [
+            "fotos/sorpresas/huevos1.jpeg"
+          ]
+        },
+        {
+          "title": "Mario Box",
+          "subtitle": "Caja sorpresa",
+          "images": [
+            "fotos/sorpresas/mariobox1.jpeg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "otros",
+      "title": "✨ Otros",
+      "accent": "text-orange-800",
+      "cardSize": "card-lg",
+      "items": [
+        {
+          "title": "Escarapelas (var. 1)",
+          "subtitle": "Tradicional",
+          "images": [
+            "fotos/otros/escarapelas1.jpeg"
+          ]
+        }
+      ]
+    }
+  ]
+}
