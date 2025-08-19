@@ -66,7 +66,7 @@
           "title": "Pokebola 3D",
           "subtitle": "Pokemon",
           "images": [
-            "fotos/llaveros/pokebola1.jpeg"
+            "fotos/llaveros/pokebola1.png"
           ]
         },
         {
@@ -141,6 +141,13 @@
           "images": [
             "fotos/juegos/bonsai.jpeg"
           ]
+        },
+      {
+          "title": "Tetris",
+          "subtitle": "Juegos de Mesa",
+          "images": [
+            "fotos/juegos/tetris.png"
+          ]
         }
 
       ]
@@ -161,8 +168,9 @@
         },
         {
           "title": "Dragones",
-          "subtitle": "Huevos con sorpresa",
+          "subtitle": "Coleccionalos!",
           "images": [
+            "fotos/sorpresas/dragonCollection2.jpeg",
             "fotos/sorpresas/dragonCollection.jpeg"
           ]
         },
