@@ -111,7 +111,38 @@
           "images": [
             "fotos/figuras/labubu1.jpeg"
           ]
+        },
+                {
+          "title": "Light Saber",
+          "subtitle": "Star Wars",
+          "images": [
+            "fotos/figuras/lightSaber.jpeg",
+            "fotos/figuras/lightSaber2.jpeg"
+          ]
+        },
+        {
+          "title": "Quoridor Pacman",
+          "subtitle": "Juegos de Mesa",
+          "images": [
+            "fotos/figuras/quoridorPacman.jpeg",
+            "fotos/figuras/quoridorPacman2.jpeg"
+          ]
+        },
+        {
+          "title": "Mini Quoridor Futbol",
+          "subtitle": "Juegos de Mesa",
+          "images": [
+            "fotos/figuras/quoridorFutbol.jpeg"
+          ]
+        },
+         {
+          "title": "Bonsai",
+          "subtitle": "Juegos de Mesa",
+          "images": [
+            "fotos/figuras/bonsai.jpeg"
+          ]
         }
+
       ]
     },
     {
@@ -124,7 +155,8 @@
           "title": "Huevos de Dragón",
           "subtitle": "Huevos con sorpresa",
           "images": [
-            "fotos/sorpresas/huevos1.jpeg"
+            "fotos/sorpresas/huevos1.jpeg",
+            "fotos/sorpresas/huevos2.jpeg"
           ]
         },
         {
@@ -140,6 +172,13 @@
           "images": [
             "fotos/sorpresas/mariobox1.jpeg"
           ]
+        },
+        {
+          "title": "Caja Criptex",
+          "subtitle": "Caja con combinación",
+          "images": [
+            "fotos/sorpresas/cajaCriptex.jpeg"
+          ]
         }
       ]
     },
@@ -154,6 +193,14 @@
           "subtitle": "Diseño floral",
           "images": [
             "fotos/otros/tulipanes1.jpeg"
+          ]
+        },
+        {
+          "title": "Thermo Canuto",
+          "subtitle": "Esconde tus billetes",
+          "images": [
+            "fotos/otros/thermoCanuto.jpeg",
+            "fotos/otros/thermoCanuto2.jpeg"
           ]
         },
         {
