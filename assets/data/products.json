@@ -24,6 +24,13 @@
           "title": "Racing",
           "subtitle": "Escudo",
           "images": [
+            "fotos/llaveros/racing.jpeg"
+          ]
+        },
+        {
+          "title": "Racing",
+          "subtitle": "Escudo",
+          "images": [
             "fotos/llaveros/river1.jpeg"
           ]
         },
@@ -64,31 +71,52 @@
         },
         {
           "title": "Pokebola 3D",
-          "subtitle": "Tridimensional",
+          "subtitle": "Pokemon",
           "images": [
             "fotos/llaveros/pokebola1.jpeg"
           ]
         },
         {
           "title": "Sombrero HP",
-          "subtitle": "Hechicería",
+          "subtitle": "Harry Potter",
           "images": [
             "fotos/llaveros/sombreroHP1.jpeg"
+          ]
+        },
+        {
+          "title": "Chimuelo",
+          "subtitle": "How to Train Your Dragon",
+          "images": [
+            "fotos/llaveros/chimuelo.jpeg"
+          ]
+        },
+         {
+          "title": "Minecraft",
+          "subtitle": "Minecraft",
+          "images": [
+            "fotos/llaveros/minecraft.jpeg"
           ]
         }
       ]
     },
     {
-      "id": "clickers",
-      "title": "🎮 Clickers",
+      "id": "figuras",
+      "title": "🎮 Figuras",
       "accent": "text-blue-800",
       "cardSize": "card-lg",
       "items": [
         {
-          "title": "Clicker Tulipanes",
-          "subtitle": "Diseño floral",
+          "title": "Stumble Guys",
+          "subtitle": "Deco Torta",
           "images": [
-            "fotos/clickers/tulipanes1.jpeg"
+            "fotos/figuras/stumbleGuys.jpeg"
+          ]
+        },
+        {
+          "title": "Labubu",
+          "subtitle": "Deco Torta",
+          "images": [
+            "fotos/figuras/labubu1.jpeg"
           ]
         }
       ]
@@ -101,9 +129,16 @@
       "items": [
         {
           "title": "Huevos de Dragón",
-          "subtitle": "Monocromo con sorpresa",
+          "subtitle": "Huevos con sorpresa",
           "images": [
             "fotos/sorpresas/huevos1.jpeg"
+          ]
+        },
+        {
+          "title": "Dragones",
+          "subtitle": "Huevos con sorpresa",
+          "images": [
+            "fotos/sorpresas/dragonCollection.jpeg"
           ]
         },
         {
@@ -121,6 +156,13 @@
       "accent": "text-orange-800",
       "cardSize": "card-lg",
       "items": [
+        {
+          "title": "Clicker Tulipanes",
+          "subtitle": "Diseño floral",
+          "images": [
+            "fotos/otros/tulipanes1.jpeg"
+          ]
+        },
         {
           "title": "Escarapela",
           "subtitle": "Tradicional",
