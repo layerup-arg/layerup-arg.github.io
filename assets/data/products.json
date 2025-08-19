@@ -124,22 +124,22 @@
           "title": "Quoridor Pacman",
           "subtitle": "Juegos de Mesa",
           "images": [
-            "fotos/figuras/quoridorPacman.jpeg",
-            "fotos/figuras/quoridorPacman2.jpeg"
+            "fotos/juegos/quoridorPacman.jpeg",
+            "fotos/juegos/quoridorPacman2.jpeg"
           ]
         },
         {
           "title": "Mini Quoridor Futbol",
           "subtitle": "Juegos de Mesa",
           "images": [
-            "fotos/figuras/quoridorFutbol.jpeg"
+            "fotos/juegos/quoridorFutbol.jpeg"
           ]
         },
          {
           "title": "Bonsai",
           "subtitle": "Juegos de Mesa",
           "images": [
-            "fotos/figuras/bonsai.jpeg"
+            "fotos/juegos/bonsai.jpeg"
           ]
         }
 
