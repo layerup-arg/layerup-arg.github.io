@@ -24,3 +24,34 @@
   .category-card, .product-card { transition: none; }
 }
 
+/* Novedades Destacadas */
+.novedades-section {
+  padding: 48px 0 0 0;
+}
+.novedades-row {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 8px;
+}
+.novedad-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  overflow: hidden;
+  margin-right: 24px;
+  display: inline-block;
+  vertical-align: top;
+  min-width: 300px;
+  max-width: 300px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.novedad-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.novedad-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}

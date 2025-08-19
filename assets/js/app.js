@@ -28,6 +28,47 @@
     nav.appendChild(grid);
   }
 
+  function renderNovedadesDestacadas(data) {
+    if (!data.novedadesDestacadas || !data.novedadesDestacadas.length) return;
+
+    const sec = document.createElement('section');
+    sec.className = 'py-8 novedades-section';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'container mx-auto px-4';
+    wrap.insertAdjacentHTML('beforeend', `<h2 class="text-2xl font-bold text-center mb-6 text-blue-400">Novedades Destacadas</h2>`);
+
+    const row = document.createElement('div');
+    row.className = 'scroll-x';
+
+    data.novedadesDestacadas.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'novedad-card bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0';
+      card.dataset.title = item.title;
+      card.dataset.images = (item.images || []).join('|');
+
+      const img = document.createElement('img');
+      img.src = item.images?.[0] || '';
+      img.alt = item.title;
+      img.loading = 'lazy';
+      img.className = 'novedad-img';
+
+      const body = document.createElement('div');
+      body.className = 'p-4';
+      body.innerHTML = `<h3 class="font-semibold text-gray-800 text-base truncate">${item.title}</h3><p class="text-sm text-gray-600 mt-1">${item.subtitle || ''}</p>`;
+
+      card.appendChild(img);
+      card.appendChild(body);
+      row.appendChild(card);
+    });
+
+    wrap.appendChild(row);
+    sec.appendChild(wrap);
+
+    // Insertar antes de las categorías
+    content.insertBefore(sec, content.firstChild);
+  }
+
   function sectionTitle(cat){
     return `<h2 class="text-2xl font-bold text-center mb-6 ${cat.accent}">${cat.title}</h2>`;
   }
@@ -175,6 +216,7 @@
     if(!res.ok) throw new Error('HTTP '+res.status);
     const data = await res.json();
     renderCategories(data);
+    renderNovedadesDestacadas(data);
     renderSections(data);
   } catch (err) {
     console.error('Error cargando products.json:', err);
