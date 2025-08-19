@@ -28,36 +28,36 @@
           ]
         },
         {
-          "title": "Hello Kitty Azul",
-          "subtitle": "Multicolor",
+          "title": "Kitty Azul",
+          "subtitle": "Hello Kitty",
           "images": [
             "fotos/llaveros/kittyazul1.jpeg"
           ]
         },
         {
-          "title": "Hello Kitty Roja",
-          "subtitle": "Multicolor",
+          "title": "Kitty Roja",
+          "subtitle": "Hello Kitty",
           "images": [
             "fotos/llaveros/kittyroja1.jpeg"
           ]
         },
         {
           "title": "Kuromi",
-          "subtitle": "Multicolor",
+          "subtitle": "Hello Kitty",
           "images": [
             "fotos/llaveros/kuromi1.jpeg"
           ]
         },
         {
           "title": "My Melody",
-          "subtitle": "Multicolor",
+          "subtitle": "Hello Kitty",
           "images": [
             "fotos/llaveros/mymelody1.jpeg"
           ]
         },
         {
           "title": "Pikachu",
-          "subtitle": "Plano multicolor",
+          "subtitle": "Pokemon",
           "images": [
             "fotos/llaveros/pikachu.jpeg"
           ]
@@ -132,7 +132,7 @@
           "title": "Mini Quoridor Futbol",
           "subtitle": "Juegos de Mesa",
           "images": [
-            "fotos/juegos/quoridorFutbol.jpeg"
+            "fotos/juegos/miniQuoridorFutbol.jpeg"
           ]
         },
          {
@@ -190,7 +190,7 @@
       "items": [
         {
           "title": "Clicker Tulipanes",
-          "subtitle": "Diseño floral",
+          "subtitle": "Mata tu estres",
           "images": [
             "fotos/otros/tulipanes1.jpeg"
           ]
