@@ -204,11 +204,22 @@
   imgEl.addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].clientX-startX; if(Math.abs(dx)>40) (dx<0?next():prev());},{passive:true});
 
   document.addEventListener('click', (e)=>{
+    // Productos
     const card = e.target.closest('.product-card');
-    if(!card) return;
-    const imgs = (card.dataset.images || '').split('|').filter(Boolean);
-    const ttl = card.dataset.title || card.querySelector('h3')?.textContent?.trim() || 'Galería';
-    openModal(imgs, ttl);
+    if(card) {
+      const imgs = (card.dataset.images || '').split('|').filter(Boolean);
+      const ttl = card.dataset.title || card.querySelector('h3')?.textContent?.trim() || 'Galería';
+      openModal(imgs, ttl);
+      return;
+    }
+    // Novedades
+    const novedad = e.target.closest('.novedad-card');
+    if(novedad) {
+      const imgs = (novedad.dataset.images || '').split('|').filter(Boolean);
+      const ttl = novedad.dataset.title || novedad.querySelector('h3')?.textContent?.trim() || 'Novedad';
+      openModal(imgs, ttl);
+      return;
+    }
   });
 
   try {
