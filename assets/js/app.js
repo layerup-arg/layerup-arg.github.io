@@ -1,5 +1,4 @@
 (async () => {
-  const nav = document.getElementById('categoriesNav');
   const content = document.getElementById('content');
 
   function scrollToCategory(id){
@@ -7,27 +6,85 @@
   }
   window.scrollToCategory = scrollToCategory;
 
-  function renderCategories(data) {
-    const grid = document.createElement('div');
-    grid.className = 'container mx-auto px-4';
-    const inner = document.createElement('div');
-    inner.className = 'grid grid-cols-2 gap-3';
+  /* ====== Coloca la altura real del header en una CSS var para la subbar sticky ====== */
+  function updateHeaderHeightVar(){
+    const header = document.querySelector('.lu-header');
+    if(!header) return;
+    const h = header.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--lu-header-height', `${Math.round(h)}px`);
+  }
+  window.addEventListener('resize', updateHeaderHeightVar);
+  window.addEventListener('load', updateHeaderHeightVar);
 
-    data.categories.forEach(cat => {
+  /* ====== Render de categorías en sub-bar y autoajuste ====== */
+  function renderCategories(data) {
+    updateHeaderHeightVar();
+
+    const subbar = document.getElementById('lu-subbar');
+    const nav = document.getElementById('categoriesNav');
+    let inner = nav.querySelector('.cat-bar-inner');
+    if(!inner){
+      inner = document.createElement('div');
+      inner.className = 'cat-bar-inner';
+      nav.appendChild(inner);
+    }
+    inner.innerHTML = '';
+
+    (data.categories || []).forEach(cat => {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'category-card p-3 rounded-xl text-center shadow-lg bg-white';
-      const icon = cat.title.split(' ')[0]; // emoji
-      const label = cat.title.replace(/^\S+\s/, '');
-      btn.innerHTML = `<div class="text-2xl mb-1">${icon}</div><span class="font-semibold text-xs ${cat.accent}">${label}</span>`;
+      btn.className = 'cat-pill';
+      btn.setAttribute('title', cat.title);
+
+      const icon = (cat.title || '').split(' ')[0]; // emoji
+      const label = (cat.title || '').replace(/^\S+\s/, '');
+
+      btn.innerHTML = `
+        <span class="emoji">${icon}</span>
+        <span class="label">${label}</span>
+      `;
+
       btn.addEventListener('click', () => scrollToCategory(cat.id));
       inner.appendChild(btn);
     });
 
-    grid.appendChild(inner);
-    nav.appendChild(grid);
+    fitPillsToOneLine(inner, subbar);
   }
 
+  // Reduce muy suavemente el tamaño (scale) si no entran en una fila
+  function fitPillsToOneLine(innerEl, containerEl){
+    if(!innerEl || !containerEl) return;
+
+    // Reset scale
+    innerEl.style.transform = 'scale(1)';
+
+    // Ancho disponible (restamos padding horizontal de la subbar: 8px + 8px)
+    const available = containerEl.clientWidth - 16;
+
+    // Sumamos widths + gaps
+    const children = Array.from(innerEl.children);
+    const totalWidth = children.reduce((sum, el) => sum + el.offsetWidth, 0) + (children.length - 1) * 8;
+
+    if (totalWidth <= available) return;
+
+    // escala mínima para no perder legibilidad
+    const minScale = 0.72;
+    const targetScale = Math.max(minScale, Math.min(1, available / totalWidth));
+
+    innerEl.style.transform = `scale(${targetScale})`;
+    innerEl.style.transformOrigin = 'left center';
+    // Mantener altura consistente
+    innerEl.style.height = `30px`;
+  }
+
+  // Recalcular al redimensionar
+  window.addEventListener('resize', () => {
+    const subbar = document.getElementById('lu-subbar');
+    const inner = document.querySelector('#categoriesNav .cat-bar-inner');
+    if(inner && subbar) fitPillsToOneLine(inner, subbar);
+  });
+
+  /* ====== Novedades Destacadas ====== */
   function renderNovedadesDestacadas(data) {
     if (!data.novedadesDestacadas || !data.novedadesDestacadas.length) return;
 
@@ -65,16 +122,16 @@
     wrap.appendChild(row);
     sec.appendChild(wrap);
 
-    // Insertar antes de las categorías
     content.insertBefore(sec, content.firstChild);
   }
 
+  /* ====== Secciones por categoría ====== */
   function sectionTitle(cat){
     return `<h2 class="text-2xl font-bold text-center mb-6 ${cat.accent}">${cat.title}</h2>`;
   }
 
   function renderSections(data){
-    data.categories.forEach(cat => {
+    (data.categories || []).forEach(cat => {
       const sec = document.createElement('section');
       sec.id = cat.id;
       sec.className = `py-8 ${(['clickers','sorpresas'].includes(cat.id)) ? 'bg-white/50' : ''}`;
@@ -117,7 +174,7 @@
     });
   }
 
-  // Gallery
+  /* ====== Modal Galería ====== */
   const modal = document.getElementById('galleryModal');
   const imgEl = document.getElementById('galleryImage');
   const captionEl = document.getElementById('galleryCaption');
@@ -203,25 +260,17 @@
   imgEl.addEventListener('touchstart',(e)=>{startX=e.touches[0].clientX;},{passive:true});
   imgEl.addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].clientX-startX; if(Math.abs(dx)>40) (dx<0?next():prev());},{passive:true});
 
-  document.addEventListener('click', (e)=>{
-    // Productos
-    const card = e.target.closest('.product-card');
-    if(card) {
-      const imgs = (card.dataset.images || '').split('|').filter(Boolean);
-      const ttl = card.dataset.title || card.querySelector('h3')?.textContent?.trim() || 'Galería';
-      openModal(imgs, ttl);
-      return;
-    }
-    // Novedades
-    const novedad = e.target.closest('.novedad-card');
-    if(novedad) {
-      const imgs = (novedad.dataset.images || '').split('|').filter(Boolean);
-      const ttl = novedad.dataset.title || novedad.querySelector('h3')?.textContent?.trim() || 'Novedad';
-      openModal(imgs, ttl);
-      return;
-    }
-  });
+  /* ====== Delegado de clicks en cards ====== */
+content.addEventListener('click', e => {
+  const card = e.target.closest('.product-card, .novedad-card');
+  if (!card) return;
 
+  const title = card.dataset.title || 'Galería';
+  const imgs = (card.dataset.images || '').split('|').filter(Boolean);
+  openModal(imgs, title);
+});
+
+  /* ====== Carga de datos y render ====== */
   try {
     const res = await fetch('assets/data/products.json', {cache:'no-store'});
     if(!res.ok) throw new Error('HTTP '+res.status);

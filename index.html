@@ -5,47 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Layer Up - Catálogo Productos 3D</title>
   <meta name="description" content="Layer Up: impresión 3D personalizada. Llaveros, figuras, clickers y sorpresas." />
+  <!-- Tailwind solo para layout general que ya usabas -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body class="gradient-bg min-h-screen smooth-scroll">
   
-  <link rel="stylesheet" href="header-layerup.css">
+  <!-- Header flotante -->
+  <header class="lu-header" role="banner">
+    <a class="lu-logo" href="/" aria-label="Ir al inicio">
+      <img src="/fotos/img/logo_transparent.png" alt="Logo Layer Up">
+    </a>
 
-<header class="lu-header" role="banner">
-  <a class="lu-logo" href="/" aria-label="Ir al inicio">
-    <img src="/fotos/img/logo_transparent.png" alt="Logo Layer Up">
-  </a>
+    <h1 class="lu-title">Layer <span>Up</span></h1>
 
+    <a class="lu-ig-button" 
+       href="instagram://user?username=layerup.arg" 
+       target="_blank" 
+       rel="noopener" 
+       aria-label="Abrir Instagram de Layer Up">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <defs>
+          <linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%"  stop-color="#F58529"/>
+            <stop offset="50%" stop-color="#DD2A7B"/>
+            <stop offset="100%" stop-color="#8134AF"/>
+          </linearGradient>
+        </defs>
+        <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="url(#igGrad)" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4" fill="none" stroke="url(#igGrad)" stroke-width="2"/>
+        <circle cx="17.2" cy="6.8" r="1.4" fill="url(#igGrad)"/>
+      </svg>
+    </a>
+  </header>
 
-  <h1 class="lu-title">
-    Layer <span>Up</span>
-  </h1>
+  <!-- Sub-bar flotante fina (mismo ancho que el header) -->
+  <div id="lu-subbar" class="lu-subbar" role="navigation" aria-label="Categorías">
+    <nav id="categoriesNav" class="cat-bar">
+      <div class="cat-bar-inner"><!-- pills se inyectan por JS --></div>
+    </nav>
+  </div>
 
-
-  <a class="lu-ig-button" 
-     href="instagram://user?username=layerup.arg" 
-     target="_blank" 
-     rel="noopener" 
-     aria-label="Abrir Instagram de Layer Up">
-    <!-- Ícono Instagram (SVG inline, liviano) -->
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <defs>
-        <linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%"  stop-color="#F58529"/>
-          <stop offset="50%" stop-color="#DD2A7B"/>
-          <stop offset="100%" stop-color="#8134AF"/>
-        </linearGradient>
-      </defs>
-      <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="url(#igGrad)" stroke-width="2"/>
-      <circle cx="12" cy="12" r="4" fill="none" stroke="url(#igGrad)" stroke-width="2"/>
-      <circle cx="17.2" cy="6.8" r="1.4" fill="url(#igGrad)"/>
-    </svg>
-  </a>
-</header>
-
-
-  <nav id="categoriesNav" class="py-4" aria-label="Categorías"></nav>
   <main id="content"></main>
 
   <footer class="bg-gray-800 text-white py-6 mt-8">
@@ -58,8 +58,9 @@
   <a href="https://wa.me/5491140928282?text=%C2%A1Hola!%20Quiero%20info%20de%20Layer%20Up" 
      class="whatsapp-float bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-2xl" aria-label="WhatsApp">
       <img src="fotos/img/WhatsApp.png" alt="Contactanos" class="h-10 w-auto" />
-    </a>
+  </a>
 
+  <!-- Modal de galería -->
   <div id="galleryModal" class="fixed inset-0 z-[1000] hidden" role="dialog" aria-modal="true" aria-labelledby="galleryTitle">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-close="true"></div>
     <div class="relative h-full w-full flex items-center justify-center p-4">
@@ -87,6 +88,6 @@
     </div>
   </div>
 
-  <script src="assets/js/app.js?v=2" defer></script>
+  <script src="assets/js/app.js?v=4" defer></script>
 </body>
 </html>
