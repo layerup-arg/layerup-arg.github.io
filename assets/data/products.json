@@ -1,15 +1,21 @@
 {
   "novedadesDestacadas": [
-    {
-      "title": "Figura especial",
-      "subtitle": "Edición limitada",
-      "images": ["fotos/figuras/labubu1.jpeg"]
+      {
+      "title": "Colección de Dragones",
+      "subtitle": "¿Cual es tu favorito?",
+      "images": ["fotos/sorpresas/dragonCollection.jpeg", "fotos/sorpresas/dragonCollection2.jpeg"]
     },
     {
-      "title": "Llaveros nuevos",
-      "subtitle": "¡Recién llegados!",
-      "images": ["fotos/llaveros/boca1.jpeg", "fotos/llaveros/river1.jpeg"]
+      "title": "Nuevos Sables Laser",
+      "subtitle": "Elegi tu lado!",
+      "images": ["fotos/figuras/lightSaber.jpeg", "fotos/figuras/lightSaber2.jpeg"]
+    },
+    {
+      "title": "Labubu",
+      "subtitle": "Edición limitada",
+      "images": ["fotos/figuras/labubu1.jpeg"]
     }
+
   ],
   "categories": [
     {
