@@ -1,9 +1,21 @@
 {
   "novedadesDestacadas": [
+    {
+      "title": "Escudos luminosos",
+      "subtitle": "Ilumina tu pasión",
+      "images": [ "fotos/lamparas/lampEscudos1.jpeg", 
+                  "fotos/lamparas/lampEscudos2.jpeg",
+                  "fotos/lamparas/lampEscudos3.jpeg",
+                  "fotos/lamparas/lampEscudos4.jpeg",
+                  "fotos/lamparas/lampEscudos5.jpeg",
+                  "fotos/lamparas/lampEscudos6.jpeg",
+                  "fotos/lamparas/lampEscudos7.jpeg",
+                  "fotos/lamparas/lampEscudos8.jpeg"]
+    },
       {
       "title": "Colección de Dragones",
       "subtitle": "¿Cual es tu favorito?",
-      "images": ["fotos/sorpresas/dragonCollection.jpeg", "fotos/sorpresas/dragonCollection2.jpeg"]
+      "images": ["fotos/sorpresas/dragonCollection2.jpeg", "fotos/sorpresas/dragonCollection.jpeg"]
     },
     {
       "title": "Nuevos Sables Laser",
@@ -203,7 +215,7 @@
           "title": "Caja Criptex",
           "subtitle": "Caja con combinación",
           "images": [
-            "fotos/sorpresas/cajaCriptex.jpeg"
+            "fotos/sorpresas/criptex/criptex1.jpeg","fotos/sorpresas/criptex/criptex2.jpeg","fotos/sorpresas/criptex/criptex3.jpeg","fotos/sorpresas/criptex/criptex4.jpeg"
           ]
         }
       ]
@@ -214,6 +226,18 @@
       "accent": "text-orange-800",
       "cardSize": "card-lg",
       "items": [
+        {
+          "title": "Escudos luminosos",
+          "subtitle": "Ilumina tu pasión",
+          "images": [ "fotos/lamparas/lampEscudos1.jpeg", 
+                      "fotos/lamparas/lampEscudos2.jpeg",
+                      "fotos/lamparas/lampEscudos3.jpeg",
+                      "fotos/lamparas/lampEscudos4.jpeg",
+                      "fotos/lamparas/lampEscudos5.jpeg",
+                      "fotos/lamparas/lampEscudos6.jpeg",
+                      "fotos/lamparas/lampEscudos7.jpeg",
+                      "fotos/lamparas/lampEscudos8.jpeg"]
+        },
         {
           "title": "Clicker Tulipanes",
           "subtitle": "Mata tu estres",
