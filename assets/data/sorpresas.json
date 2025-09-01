@@ -1,0 +1,32 @@
+[
+        {
+          "title": "Huevos de Dragón",
+          "subtitle": "Huevos con sorpresa",
+          "images": [
+            "fotos/sorpresas/huevos1.jpeg",
+            "fotos/sorpresas/huevos2.jpeg"
+          ]
+        },
+        {
+          "title": "Dragones",
+          "subtitle": "Coleccionalos!",
+          "images": [
+            "fotos/sorpresas/dragonCollection2.jpeg",
+            "fotos/sorpresas/dragonCollection.jpeg"
+          ]
+        },
+        {
+          "title": "Mario Box",
+          "subtitle": "Caja sorpresa",
+          "images": [
+            "fotos/sorpresas/mariobox1.jpeg"
+          ]
+        },
+        {
+          "title": "Caja Criptex",
+          "subtitle": "Caja con combinación",
+          "images": [
+            "fotos/sorpresas/criptex/criptex1.jpeg","fotos/sorpresas/criptex/criptex2.jpeg","fotos/sorpresas/criptex/criptex3.jpeg","fotos/sorpresas/criptex/criptex4.jpeg"
+          ]
+        }
+      ]

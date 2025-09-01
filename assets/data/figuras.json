@@ -1,0 +1,54 @@
+[
+        {
+          "title": "Stumble Guys",
+          "subtitle": "Deco Torta",
+          "images": [
+            "fotos/figuras/stumbleGuys.jpeg"
+          ]
+        },
+        {
+          "title": "Labubu",
+          "subtitle": "Deco Torta",
+          "images": [
+            "fotos/figuras/labubu1.jpeg"
+          ]
+        },
+                {
+          "title": "Light Saber",
+          "subtitle": "Star Wars",
+          "images": [
+            "fotos/figuras/lightSaber.jpeg",
+            "fotos/figuras/lightSaber2.jpeg"
+          ]
+        },
+        {
+          "title": "Quoridor Pacman",
+          "subtitle": "Juegos de Mesa",
+          "images": [
+            "fotos/juegos/quoridorPacman.jpeg",
+            "fotos/juegos/quoridorPacman2.jpeg"
+          ]
+        },
+        {
+          "title": "Mini Quoridor Futbol",
+          "subtitle": "Juegos de Mesa",
+          "images": [
+            "fotos/juegos/miniQuoridorFutbol.jpeg"
+          ]
+        },
+         {
+          "title": "Bonsai",
+          "subtitle": "Juegos de Mesa",
+          "images": [
+            "fotos/juegos/bonsai.jpeg"
+          ]
+        },
+      {
+          "title": "Tetris",
+          "subtitle": "Juegos de Mesa",
+          "images": [
+            "fotos/juegos/tetris.png"
+          ]
+        }
+
+      ]

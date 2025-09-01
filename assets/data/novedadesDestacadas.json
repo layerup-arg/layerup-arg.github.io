@@ -1,0 +1,36 @@
+[
+    {
+      "title": "Escudos luminosos",
+      "subtitle": "Ilumina tu pasión",
+      "images": [ "fotos/lamparas/lampEscudos1.jpeg", 
+                  "fotos/lamparas/lampEscudos2.jpeg",
+                  "fotos/lamparas/lampEscudos3.jpeg",
+                  "fotos/lamparas/lampEscudos4.jpeg",
+                  "fotos/lamparas/lampEscudos5.jpeg",
+                  "fotos/lamparas/lampEscudos6.jpeg",
+                  "fotos/lamparas/lampEscudos7.jpeg",
+                  "fotos/lamparas/lampEscudos8.jpeg"]
+    },
+    {
+      "title": "Caja de Luz Guerreras K-Pop",
+      "subtitle": "Combate los demonios!",
+      "images": [ "fotos/lamparas/huntrix1.jpeg", 
+                  "fotos/lamparas/huntrix2.jpeg", 
+                  "fotos/lamparas/huntrix3.jpeg"]
+    },
+    {
+      "title": "Colección de Dragones",
+      "subtitle": "¿Cual es tu favorito?",
+      "images": ["fotos/sorpresas/dragonCollection2.jpeg", "fotos/sorpresas/dragonCollection.jpeg"]
+    },
+    {
+      "title": "Nuevos Sables Laser",
+      "subtitle": "Elegi tu lado!",
+      "images": ["fotos/figuras/lightSaber.jpeg", "fotos/figuras/lightSaber2.jpeg"]
+    },
+    {
+      "title": "Labubu",
+      "subtitle": "Edición limitada",
+      "images": ["fotos/figuras/labubu1.jpeg"]
+    }
+]

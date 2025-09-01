@@ -6,7 +6,6 @@
   }
   window.scrollToCategory = scrollToCategory;
 
-  /* ====== Coloca la altura real del header en una CSS var para la subbar sticky ====== */
   function updateHeaderHeightVar(){
     const header = document.querySelector('.lu-header');
     if(!header) return;
@@ -16,8 +15,8 @@
   window.addEventListener('resize', updateHeaderHeightVar);
   window.addEventListener('load', updateHeaderHeightVar);
 
-  /* ====== Render de categorías en sub-bar y autoajuste ====== */
-  function renderCategories(data) {
+  // Render de categorías en sub-bar y autoajuste
+  function renderCategories(sections) {
     updateHeaderHeightVar();
 
     const subbar = document.getElementById('lu-subbar');
@@ -30,66 +29,54 @@
     }
     inner.innerHTML = '';
 
-    (data.categories || []).forEach(cat => {
+    const filteredSections = sections.filter(sec => sec.id !== 'novedadesDestacadas');
+
+    filteredSections.forEach(sec => {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'cat-pill';
-      btn.setAttribute('title', cat.title);
+      btn.setAttribute('title', sec.title);
 
-      const icon = (cat.title || '').split(' ')[0]; // emoji
-      const label = (cat.title || '').replace(/^\S+\s/, '');
+      const icon = (sec.title || '').split(' ')[0]; // emoji
+      const label = (sec.title || '').replace(/^\S+\s/, '');
 
       btn.innerHTML = `
         <span class="emoji">${icon}</span>
         <span class="label">${label}</span>
       `;
 
-      btn.addEventListener('click', () => scrollToCategory(cat.id));
+      btn.addEventListener('click', () => scrollToCategory(sec.id));
       inner.appendChild(btn);
     });
 
     fitPillsToOneLine(inner, subbar);
   }
 
-  // Reduce muy suavemente el tamaño (scale) si no entran en una fila
   function fitPillsToOneLine(innerEl, containerEl){
     if(!innerEl || !containerEl) return;
-
-    // Reset scale
     innerEl.style.transform = 'scale(1)';
-
-    // Ancho disponible (restamos padding horizontal de la subbar: 8px + 8px)
     const available = containerEl.clientWidth - 16;
-
-    // Sumamos widths + gaps
     const children = Array.from(innerEl.children);
     const totalWidth = children.reduce((sum, el) => sum + el.offsetWidth, 0) + (children.length - 1) * 8;
-
     if (totalWidth <= available) return;
-
-    // escala mínima para no perder legibilidad
     const minScale = 0.72;
     const targetScale = Math.max(minScale, Math.min(1, available / totalWidth));
-
     innerEl.style.transform = `scale(${targetScale})`;
     innerEl.style.transformOrigin = 'left center';
-    // Mantener altura consistente
     innerEl.style.height = `30px`;
   }
-
-  // Recalcular al redimensionar
   window.addEventListener('resize', () => {
     const subbar = document.getElementById('lu-subbar');
     const inner = document.querySelector('#categoriesNav .cat-bar-inner');
     if(inner && subbar) fitPillsToOneLine(inner, subbar);
   });
 
-  /* ====== Novedades Destacadas ====== */
-  function renderNovedadesDestacadas(data) {
-    if (!data.novedadesDestacadas || !data.novedadesDestacadas.length) return;
-
-    const sec = document.createElement('section');
-    sec.className = 'py-8 novedades-section';
+  // Render de novedades destacadas
+  function renderNovedadesDestacadas(sec, items) {
+    if (!items.length) return;
+    const section = document.createElement('section');
+    section.id = sec.id;
+    section.className = 'py-8 novedades-section';
 
     const wrap = document.createElement('div');
     wrap.className = 'container mx-auto px-4';
@@ -98,7 +85,7 @@
     const row = document.createElement('div');
     row.className = 'scroll-x';
 
-    data.novedadesDestacadas.forEach(item => {
+    items.forEach(item => {
       const card = document.createElement('div');
       card.className = 'novedad-card bg-white rounded-2xl shadow-lg overflow-hidden flex-shrink-0';
       card.dataset.title = item.title;
@@ -120,61 +107,58 @@
     });
 
     wrap.appendChild(row);
-    sec.appendChild(wrap);
-
-    content.insertBefore(sec, content.firstChild);
+    section.appendChild(wrap);
+    content.appendChild(section);
   }
 
-  /* ====== Secciones por categoría ====== */
-  function sectionTitle(cat){
-    return `<h2 class="text-2xl font-bold text-center mb-6 ${cat.accent}">${cat.title}</h2>`;
+  // Render de secciones por categoría
+  function sectionTitle(sec){
+    return `<h2 class="text-2xl font-bold text-center mb-6 ${sec.accent || ''}">${sec.title}</h2>`;
   }
 
-  function renderSections(data){
-    (data.categories || []).forEach(cat => {
-      const sec = document.createElement('section');
-      sec.id = cat.id;
-      sec.className = `py-8 ${(['clickers','sorpresas'].includes(cat.id)) ? 'bg-white/50' : ''}`;
+  function renderCategoria(sec, items){
+    const section = document.createElement('section');
+    section.id = sec.id;
+    section.className = `py-8 ${(['clickers','sorpresas'].includes(sec.id)) ? 'bg-white/50' : ''}`;
 
-      const wrap = document.createElement('div');
-      wrap.className = 'container mx-auto px-4';
-      wrap.insertAdjacentHTML('beforeend', sectionTitle(cat));
+    const wrap = document.createElement('div');
+    wrap.className = 'container mx-auto px-4';
+    wrap.insertAdjacentHTML('beforeend', sectionTitle(sec));
 
-      if (!cat.items.length) {
-        wrap.insertAdjacentHTML('beforeend', '<p class="text-center text-sm text-gray-500">Próximamente…</p>');
-      } else {
-        const row = document.createElement('div');
-        row.className = 'scroll-x';
+    if (!items.length) {
+      wrap.insertAdjacentHTML('beforeend', '<p class="text-center text-sm text-gray-500">Próximamente…</p>');
+    } else {
+      const row = document.createElement('div');
+      row.className = 'scroll-x';
 
-        cat.items.forEach(item => {
-          const card = document.createElement('div');
-          card.className = `product-card bg-white rounded-xl shadow-lg overflow-hidden flex-shrink-0 ${cat.cardSize}`;
-          card.dataset.title = item.title;
-          card.dataset.images = (item.images || []).join('|');
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = `product-card bg-white rounded-xl shadow-lg overflow-hidden flex-shrink-0 ${sec.cardSize || ''}`;
+        card.dataset.title = item.title;
+        card.dataset.images = (item.images || []).join('|');
 
-          const img = document.createElement('img');
-          img.src = item.images?.[0] || '';
-          img.alt = item.title;
-          img.loading = 'lazy';
-          img.className = 'card-img';
+        const img = document.createElement('img');
+        img.src = item.images?.[0] || '';
+        img.alt = item.title;
+        img.loading = 'lazy';
+        img.className = 'card-img';
 
-          const body = document.createElement('div');
-          body.className = 'p-3';
-          body.innerHTML = `<h3 class="font-semibold text-gray-800 text-sm truncate">${item.title}</h3><p class="text-xs text-gray-600 mt-1">${item.subtitle || ''}</p>`;
+        const body = document.createElement('div');
+        body.className = 'p-3';
+        body.innerHTML = `<h3 class="font-semibold text-gray-800 text-sm truncate">${item.title}</h3><p class="text-xs text-gray-600 mt-1">${item.subtitle || ''}</p>`;
 
-          card.appendChild(img);
-          card.appendChild(body);
-          row.appendChild(card);
-        });
-        wrap.appendChild(row);
-      }
+        card.appendChild(img);
+        card.appendChild(body);
+        row.appendChild(card);
+      });
+      wrap.appendChild(row);
+    }
 
-      sec.appendChild(wrap);
-      content.appendChild(sec);
-    });
+    section.appendChild(wrap);
+    content.appendChild(section);
   }
 
-  /* ====== Modal Galería ====== */
+  // Modal Galería (igual que antes)
   const modal = document.getElementById('galleryModal');
   const imgEl = document.getElementById('galleryImage');
   const captionEl = document.getElementById('galleryCaption');
@@ -260,32 +244,45 @@
   imgEl.addEventListener('touchstart',(e)=>{startX=e.touches[0].clientX;},{passive:true});
   imgEl.addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].clientX-startX; if(Math.abs(dx)>40) (dx<0?next():prev());},{passive:true});
 
-  /* ====== Delegado de clicks en cards ====== */
-content.addEventListener('click', e => {
-  const card = e.target.closest('.product-card, .novedad-card');
-  if (!card) return;
+  // Delegado de clicks en cards
+  content.addEventListener('click', e => {
+    const card = e.target.closest('.product-card, .novedad-card');
+    if (!card) return;
+    const title = card.dataset.title || 'Galería';
+    const imgs = (card.dataset.images || '').split('|').filter(Boolean);
+    openModal(imgs, title);
+  });
 
-  const title = card.dataset.title || 'Galería';
-  const imgs = (card.dataset.images || '').split('|').filter(Boolean);
-  openModal(imgs, title);
-});
+  // Carga de datos y render desde archivos separados
+try {
+  const res = await fetch('assets/data/products.json', {cache:'no-store'});
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  const data = await res.json();
+  const sections = data.sections || [];
+  console.log('Secciones:', sections);
 
-  /* ====== Carga de datos y render ====== */
-  try {
-    const res = await fetch('assets/data/products.json', {cache:'no-store'});
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const data = await res.json();
-    renderCategories(data);
-    renderNovedadesDestacadas(data);
-    renderSections(data);
-  } catch (err) {
-    console.error('Error cargando products.json:', err);
-    const fallback = { categories: [] };
-    renderCategories(fallback);
-    renderSections(fallback);
-    const warn = document.createElement('p');
-    warn.className = 'text-center text-sm text-red-600';
-    warn.textContent = 'No se pudo cargar el catálogo. Ver consola/Network para detalles.';
-    content.appendChild(warn);
+  renderCategories(sections);
+
+  for (const sec of sections) {
+    console.log('Cargando sección:', sec.id, sec.file);
+    const itemsRes = await fetch(`assets/data/${sec.file}`);
+    if(!itemsRes.ok) throw new Error(`No se pudo cargar ${sec.file}: HTTP ${itemsRes.status}`);
+    const items = await itemsRes.json();
+    console.log('Items de', sec.id, items);
+
+    if (sec.id === 'novedadesDestacadas') {
+      renderNovedadesDestacadas(sec, items);
+    } else {
+      renderCategoria(sec, items);
+    }
   }
+} catch (err) {
+  console.error('Error cargando products.json o archivos de sección:', err);
+  const fallback = [];
+  renderCategories(fallback);
+  const warn = document.createElement('p');
+  warn.className = 'text-center text-sm text-red-600';
+  warn.textContent = 'No se pudo cargar el catálogo. Ver consola/Network para detalles.';
+  content.appendChild(warn);
+}
 })();
