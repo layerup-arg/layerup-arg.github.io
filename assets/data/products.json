@@ -1,6 +1,7 @@
 {
   "sections": [
     { "id": "novedadesDestacadas", "title": "Novedades Destacadas", "file": "novedadesDestacadas.json", "cardSize": "card-xl", "accent": "text-blue-400" },
+    { "id": "lamparas", "title": "🔑 Cajas de Luz", "file": "lamparas.json", "cardSize": "card", "accent": "text-pink-800" },
     { "id": "llaveros", "title": "🔑 Llaveros", "file": "llaveros.json", "cardSize": "card", "accent": "text-pink-800" },
     { "id": "figuras", "title": "🎮 Figuras y Juegos", "file": "figuras.json", "cardSize": "card-lg", "accent": "text-blue-800" },
     { "id": "sorpresas", "title": "🎁 Sorpresas", "file": "sorpresas.json", "cardSize": "card-lg", "accent": "text-purple-800" },
