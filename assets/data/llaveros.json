@@ -1,5 +1,13 @@
 [
         {
+          "title": "Avatar World",
+          "subtitle": "Diseña tu mundo",
+          "images": [ "fotos/llaveros/avatarw3.jpeg", 
+                      "fotos/llaveros/avatarw1.jpeg",
+                      "fotos/llaveros/avatarw2.jpeg"
+                    ]
+        },
+        {
           "title": "Boca",
           "subtitle": "Escudo",
           "images": [
