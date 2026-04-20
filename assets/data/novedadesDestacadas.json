@@ -11,6 +11,33 @@
       ]
     },
     {
+      "title": "Copa del Mundo",
+      "subtitle": "Vamos por la cuarta!",
+      "images": [ "fotos/llaveros/copa1.jpeg", 
+                  "fotos/llaveros/copa2.jpeg",
+                  "fotos/llaveros/copa3.jpeg",
+                  "fotos/llaveros/copa4.jpeg"
+                ]
+    },
+    {
+      "title": "Halcones O11CE",
+      "subtitle": "Ad gloriam volant",
+      "images": [ "fotos/lamparas/halcones1.jpeg", 
+                  "fotos/lamparas/halcones2.jpeg",
+                  "fotos/lamparas/halcones3.jpeg"
+                ]
+    },
+    {
+      "title": "Halcones O11CE",
+      "subtitle": "Ad gloriam volant",
+      "images": [ "fotos/llaveros/halcones1.jpeg", 
+                  "fotos/llaveros/halcones2.jpeg",
+                  "fotos/llaveros/halcones3.jpeg",
+                  "fotos/llaveros/halcones4.jpeg", 
+                  "fotos/llaveros/halcones5.jpeg"
+                ]
+    },
+    {
       "title": "Escudos luminosos",
       "subtitle": "Ilumina tu pasión",
       "images": [ "fotos/lamparas/lampEscudos1.jpeg", 
