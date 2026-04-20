@@ -1,5 +1,16 @@
 [
         {
+          "title": "Box Figus Mundial",
+          "subtitle": "Organiza tus figus",
+          "images": [
+            "fotos/otros/figus1.jpeg",
+            "fotos/otros/figus2.jpeg",
+            "fotos/otros/figus3.jpeg",
+            "fotos/otros/figus4.jpeg",
+            "fotos/otros/figus5.jpeg"
+          ]
+        },
+        {
           "title": "Clicker Tulipanes",
           "subtitle": "Mata tu estres",
           "images": [

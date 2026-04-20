@@ -1,5 +1,13 @@
 [
         {
+          "title": "Halcones O11CE",
+          "subtitle": "Ad gloriam volant",
+          "images": [ "fotos/lamparas/halcones1.jpeg", 
+                      "fotos/lamparas/halcones2.jpeg",
+                      "fotos/lamparas/halcones3.jpeg"
+                    ]
+        },
+        {
           "title": "Caja de Luz Guerreras K-Pop",
           "subtitle": "Combate los demonios!",
           "images": [ "fotos/lamparas/huntrix1.jpeg", 
