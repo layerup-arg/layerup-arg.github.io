@@ -25,5 +25,19 @@
                       "fotos/lamparas/lampEscudos6.jpeg",
                       "fotos/lamparas/lampEscudos7.jpeg",
                       "fotos/lamparas/lampEscudos8.jpeg"]
+        },
+        {
+          "title": "Como entrenar a tu dragón",
+          "subtitle": "Chimuelo y Furia Luminosa",
+          "images": [ "fotos/lamparas/entrenarDragon1.jpeg", 
+                      "fotos/lamparas/entrenarDragon2.jpeg",
+                      "fotos/lamparas/entrenarDragon3.jpeg"
+        },
+        {
+          "title": "Saja Boys",
+          "subtitle": "your idols",
+          "images": [ "fotos/lamparas/sajaBoys1.jpeg", 
+                      "fotos/lamparas/sajaBoys2.jpeg",
+                      "fotos/lamparas/sajaBoys3.jpeg"
         }
 ]
